@@ -1,3 +1,5 @@
 .main {
   text-align: center;
+  border-style: dashed 1px;
+  border-color: #000;
 }

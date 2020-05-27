@@ -18,14 +18,15 @@
   background-color: #ccc;
   border: 0px;
   text-align: center;
-  width: 250px;
+  width: 325px;
   letter-spacing: 0.3em;
 }
 .controls-button {
   font-size: 18px;
-  border-radius: 7px;
-  height: 40px;
+  border-radius: 5px;
+  height: 44px;
   width: 100px;
   background-color: #4d4d4d;
   color: #fff;
+  letter-spacing: 0.3em;
 }

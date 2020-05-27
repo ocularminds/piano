@@ -9,7 +9,15 @@ class Keyboard extends React.Component {
       <div className="piano">
         {keys &&
           keys.map((pad, index) => {
-            return <KeyPad clazz="WHITE" id={index} pad={pad} key={index} />;
+            return (
+              <KeyPad
+                clazz="WHITE"
+                id={index}
+                pad={pad}
+                key={index}
+                onSave={this.props.onSave}
+              />
+            );
           })}
         {keys &&
           keys.map((pad, index) => {
@@ -21,8 +29,9 @@ class Keyboard extends React.Component {
                 clazz="BLACK"
                 id={index}
                 pad={pad}
-                key={index * 2}
+                key={index + Math.ceil(Math.random() * 98765432)}
                 size={keys.length}
+                onSave={this.props.onSave}
               />
             );
           })}

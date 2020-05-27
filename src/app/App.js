@@ -23,13 +23,11 @@ class App extends React.Component {
 
   onKeyboardClick(key) {}
 
-  play(keys) {}
-
   render() {
     return (
       <>
         <h1>-- My Piano --</h1>
-        <PianoList pianos={this.state.pianos} />
+        <PianoList pianos={this.state.pianos}/>
       </>
     );
   }

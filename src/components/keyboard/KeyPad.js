@@ -5,6 +5,15 @@ class KeyPad extends React.Component {
   constructor(props) {
     super(props);
     this.createPad = this.createPad.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    if (e.target.getAttribute('label') && this.props.clazz === 'WHITE') {
+      e.target.style.setProperty('background-color', '#737373');
+      this.props.onSave(e.target.getAttribute('label'));
+    }
   }
 
   createPad() {
@@ -29,7 +38,12 @@ class KeyPad extends React.Component {
   render() {
     const key = this.createPad();
     return (
-      <div className={this.props.clazz.toLowerCase()} style={key.stylePads}>
+      <div
+        className={this.props.clazz.toLowerCase()}
+        style={key.stylePads}
+        label={key.label}
+        onClick={(e) => this.handleClick(e)}
+      >
         <div className="key">{key.label}</div>
       </div>
     );
