@@ -1,9 +1,17 @@
 import React from 'react';
+import Piano from './Piano';
 
-class PianoList extends React.Component{    
-    render(){
-        return (<h1>Piano List</h1>)
-    }
+class PianoList extends React.Component {
+  render() {
+    return (
+      <>
+        {this.props.pianos &&
+          this.props.pianos.map((piano, index) => {
+            return <Piano key={index} model={piano} />;
+          })}
+      </>
+    );
+  }
 }
 
 export default PianoList;
