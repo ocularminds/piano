@@ -7,7 +7,7 @@ class PianoList extends React.Component {
       <>
         {this.props.pianos &&
           this.props.pianos.map((piano, index) => {
-            return <Piano key={index} model={piano} onPlay={this.props.onPlay}/>;
+            return <Piano key={index} model={piano} onPlay={this.props.onPlay} id={index}/>;
           })}
       </>
     );

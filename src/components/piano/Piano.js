@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './Piano.css';
 import Controls from '../controls/Controls';
 import Keyboard from '../keyboard/Keyboard';
@@ -11,11 +10,11 @@ class Piano extends React.Component {
     this.state = {nodes: {}, logs: 'LOGS: '};
     this.play = this.play.bind(this);
     this.save = this.save.bind(this);
+    this.piano = React.createRef();
   }
   componentDidMount() {
     let htmlNodes = {};
-    const domNode = ReactDOM.findDOMNode(this);
-    let nodes = domNode.querySelectorAll('.white');
+    const nodes= this.piano.current.querySelectorAll('.white');
     nodes.forEach((node) => {
       if (this.NOTES.some((n) => n === node.getAttribute('label'))) {
         htmlNodes[node.getAttribute('label')] = node;
@@ -49,9 +48,9 @@ class Piano extends React.Component {
 
   render() {
     return (
-      <div className="main">
+      <div className="main" ref={this.piano}>
         <h2>{this.props.model.name}</h2>
-        <Keyboard keyPads={this.props.model.keyPads} onSave={this.save} />
+        <Keyboard keyPads={this.props.model.keyPads} onSave={this.save} id={this.props.id}/>
         <Controls onPlay={this.play} logs={this.state.logs} />
       </div>
     );
