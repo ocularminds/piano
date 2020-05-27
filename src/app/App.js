@@ -7,9 +7,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       pianos: [
-        {name: 'Casino', keyPads: ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']},
-        {name: 'Yamaha', keyPads: ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E']},
-        {name: 'Korg', keyPads: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A']},
+        {
+          name: 'Casino',
+          keyPads: ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+        },
+        {
+          name: 'Korg 7781',
+          keyPads: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'],
+        },
       ],
       keyPads: [],
       classNames: [],
