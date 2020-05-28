@@ -1,5 +1,6 @@
 .main {
   text-align: center;
-  border-style: dashed 1px;
   border-color: #000;
+  background: white;
+  border-radius: 5px;
 }

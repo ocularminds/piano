@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import ErrorBoundary from './ErrorBoundary';
 import PianoList from '../components/piano/PianoList';
 
 class App extends React.Component {
@@ -20,7 +21,11 @@ class App extends React.Component {
   }
 
   render() {
-    return <PianoList pianos={this.state.pianos} />;
+    return (
+      <ErrorBoundary>
+        <PianoList pianos={this.state.pianos} />
+      </ErrorBoundary>
+    );
   }
 }
 

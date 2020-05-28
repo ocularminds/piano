@@ -11,8 +11,10 @@ class KeyPad extends React.Component {
   handleClick(e) {
     e.preventDefault();
     if (e.target.getAttribute('label') && this.props.clazz === 'WHITE') {
-      e.target.style.setProperty('background-color', '#737373');
+      const style = e.target.style;
+      style.setProperty('background-color', '#737373');
       this.props.onSave(e.target.getAttribute('label'));
+      setTimeout(() => style.setProperty('background-color', '#fff'), 1000);
     }
   }
 
