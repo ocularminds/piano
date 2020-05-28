@@ -16,20 +16,11 @@ class App extends React.Component {
           keyPads: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'],
         },
       ],
-      keyPads: [],
-      classNames: [],
     };
   }
 
-  onKeyboardClick(key) {}
-
   render() {
-    return (
-      <>
-        <h1>-- My Piano --</h1>
-        <PianoList pianos={this.state.pianos}/>
-      </>
-    );
+    return <PianoList pianos={this.state.pianos} />;
   }
 }
 

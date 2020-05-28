@@ -6,15 +6,15 @@ class Keyboard extends React.Component {
   createKey(pad, index, clazz = 'WHITE') {
     let keyid = index + clazz + this.props.id;
     if (clazz === 'BLACK') {
-      if (pad === 'E' || pad === 'B') return <></>;
+      if (pad === 'E' || pad === 'B') return (<div key={keyid}></div>);
     }
-    console.log(clazz, pad, keyid);
     return (
       <KeyPad
         clazz={clazz}
         id={index}
         pad={pad}
         key={keyid}
+        keyid={keyid}
         onSave={this.props.onSave}
       />
     );
@@ -22,12 +22,12 @@ class Keyboard extends React.Component {
   render() {
     const keys = this.props.keyPads;
     return (
-      <div className="piano">
+      <div className="piano" key={this.props.id}>
         {keys && keys.map((pad, index) => this.createKey(pad, index))}
         {keys && keys.map((pad, index) => this.createKey(pad, index, 'BLACK'))}
       </div>
     );
   }
 }
-
+Keyboard.displayName = 'Keyboard'
 export default Keyboard;

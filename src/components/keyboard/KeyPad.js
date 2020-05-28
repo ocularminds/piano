@@ -19,12 +19,12 @@ class KeyPad extends React.Component {
   createPad() {
     const pad = this.props.pad;
     let zIndex = parseInt(this.props.id) + 1;
-    let top = parseInt(this.props.id) === 0 ? 0 : -200;
-    let left = Math.ceil(parseInt(this.props.id) * 52.5);
+    let top = parseInt(this.props.id) === 0 ? 0 : -250;
+    let left = Math.ceil(parseInt(this.props.id) * 80);
     if (this.props.clazz === 'BLACK') {
       zIndex = parseInt(this.props.id) + 1 + parseInt(this.props.size);
-      top = parseInt(this.props.id) === 0 ? -200 : -150;
-      left = Math.ceil(parseInt(this.props.id) * 52.5) + 26;
+      top = parseInt(this.props.id) === 0 ? -250 : -150;
+      left = Math.ceil(parseInt(this.props.id) * 80) + 37.5;
     }
     const semitone = pad === 'E' || pad === 'B';
     const label = this.props.clazz === 'WHITE' ? pad : pad + '#';
@@ -42,6 +42,7 @@ class KeyPad extends React.Component {
         className={this.props.clazz.toLowerCase()}
         style={key.stylePads}
         label={key.label}
+        key={this.props.keyid}
         onClick={(e) => this.handleClick(e)}
       >
         <div className="key">{key.label}</div>
@@ -49,5 +50,5 @@ class KeyPad extends React.Component {
     );
   }
 }
-
+KeyPad.displayName = 'KeyPad';
 export default KeyPad;

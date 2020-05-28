@@ -19,9 +19,9 @@ class Controls extends React.Component {
     }
   }
 
-  handlePlay(e) {
+  handlePlay(e, ref) {
     e.preventDefault();
-    this.props.onPlay(this.state.notes);
+    this.props.onPlay(this.state.notes, ref);
   }
 
   render() {
@@ -36,7 +36,7 @@ class Controls extends React.Component {
           />
           <button
             className="controls-button"
-            onClick={(e) => this.handlePlay(e)}
+            onClick={(e) => this.handlePlay(e, this.props.container.current)}
           >
             Play
           </button>

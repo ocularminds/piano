@@ -11,16 +11,19 @@ class Piano extends React.Component {
     this.play = this.play.bind(this);
     this.save = this.save.bind(this);
     this.piano = React.createRef();
+    this.mountNodes = this.mountNodes.bind(this);
   }
-  componentDidMount() {
+  mountNodes(main) {
     let htmlNodes = {};
-    const nodes= this.piano.current.querySelectorAll('.white');
+    if (main === undefined) return htmlNodes;
+    
+    const nodes = main.querySelectorAll('.white');
     nodes.forEach((node) => {
       if (this.NOTES.some((n) => n === node.getAttribute('label'))) {
         htmlNodes[node.getAttribute('label')] = node;
       }
     });
-    this.setState({nodes: htmlNodes});
+    return htmlNodes;
   }
 
   save(data) {
@@ -28,18 +31,18 @@ class Piano extends React.Component {
     this.setState({logs: data});
   }
 
-  play(keys) {
-    if (keys === undefined) return;
-    const {nodes} = this.state;
+  play(keys, container) {
+    if (keys === undefined || keys === null || keys.length === 0) return;
+    const nodes = this.mountNodes(container);
     var count = 0;
+    const highlight = (S) => S.setProperty('background-color', '#737373');
+    const normalize = (S) => S.setProperty('background-color', '#ffffff');
     keys.split(',').forEach((key) => {
       if (this.NOTES.some((n) => n === key)) {
+        if (nodes[key] === undefined) return;
         setTimeout(() => {
-          nodes[key].style.setProperty('background-color', '#737373');
-          setTimeout(
-            () => nodes[key].style.setProperty('background-color', '#ffffff'),
-            1000
-          );
+          highlight(nodes[key].style);
+          setTimeout(() => normalize(nodes[key].style), 1000);
         }, 1000 * count);
         count += 1;
       }
@@ -48,13 +51,18 @@ class Piano extends React.Component {
 
   render() {
     return (
-      <div className="main" ref={this.piano}>
+      <div className="main" ref={this.piano} key={this.props.id}>
         <h2>{this.props.model.name}</h2>
-        <Keyboard keyPads={this.props.model.keyPads} onSave={this.save} id={this.props.id}/>
-        <Controls onPlay={this.play} logs={this.state.logs} />
+        <Keyboard
+          keyPads={this.props.model.keyPads}
+          onSave={this.save}
+          id={this.props.id}
+        />
+        <Controls onPlay={this.play} logs={this.state.logs} container={this.piano}/>
       </div>
     );
   }
 }
 
+Piano.displayName='Piano';
 export default Piano;
